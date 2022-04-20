@@ -13,6 +13,9 @@ const router = new VueRouter({
     mode:'history'
 })
 
+import User from "./Helpers/User";
+window.User = User;
+
 const app = new Vue({
     el: '#app',
     router

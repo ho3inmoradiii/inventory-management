@@ -10,13 +10,13 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" @submit.prevent="login">
                                         <div class="form-group">
                                             <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
-                                                   placeholder="Enter Email Address">
+                                                   placeholder="Enter Email Address" v-model="form.email">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" v-model="form.password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small" style="line-height: 1.5rem;">
@@ -26,7 +26,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <a href="index.html" class="btn btn-primary btn-block">Login</a>
+                                            <button type="submit" class="btn btn-primary btn-block">Login</button>
                                         </div>
 <!--                                        <a href="index.html" class="btn btn-google btn-block">-->
 <!--                                            <i class="fab fa-google fa-fw"></i> Login with Google-->
@@ -53,6 +53,23 @@
 </template>
 
 <script>
+    export default {
+        data(){
+            return{
+                form:{
+                    email:null,
+                    password:null
+                }
+            }
+        },
+        methods:{
+            login(){
+                axios.post('/api/auth/login',this.form)
+                .then(res => User.responseAfterLogin(res))
+                .catch(err => console.log(err.response.data))
+            }
+        }
+    }
 
 </script>
 
