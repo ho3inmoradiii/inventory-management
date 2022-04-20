@@ -18,7 +18,7 @@ class User {
     }
 
     hasToken(){
-        const storedToken = AppStorage.getToken();
+        const storedToken = localStorage.getItem('token');
         if(storedToken){
             return Token.isValid(storedToken) ? true : this.logout();
         }
