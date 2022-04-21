@@ -12,6 +12,7 @@
     <link href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/css/ruang-admin.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('backend/css/style.css')}}" rel="stylesheet">
     <link href="{{ asset('css/app.css')}}" rel="stylesheet">
 </head>
 
@@ -276,23 +277,23 @@
                                 <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <a class="dropdown-item text-right" href="#">
                                     Profile
+                                    <i class="fas fa-user fa-sm fa-fw text-gray-400"></i>
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <a class="dropdown-item text-right" href="#">
                                     Settings
+                                    <i class="fas fa-cogs fa-sm fa-fw text-gray-400"></i>
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <a class="dropdown-item text-right" href="#">
                                     Activity Log
+                                    <i class="fas fa-list fa-sm fa-fw text-gray-400"></i>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="login.html">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
+                                <router-link to="/logout" class="dropdown-item text-right">
+                                    خروج
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw text-gray-400"></i>
+                                </router-link>
                             </div>
                         </li>
                     </ul>

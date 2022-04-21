@@ -8,25 +8,26 @@
                             <div class="col-lg-12">
                                 <div class="login-form">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">ورود به حساب کاربری</h1>
                                     </div>
                                     <form class="user" @submit.prevent="login">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
-                                                   placeholder="Enter Email Address" v-model="form.email">
+                                        <div class="form-group text-right">
+                                            <input type="email" class="form-control text-right" id="exampleInputEmail" aria-describedby="emailHelp"
+                                                   placeholder="ایمیل خود را وارد کنید" v-model="form.email">
+                                            <small v-if="errors.email" class="text-danger">{{ errors.email[0] }}</small>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" v-model="form.password">
+                                        <div class="form-group text-right">
+                                            <input type="password" class="form-control text-right" id="exampleInputPassword" placeholder="پسورد خود را وارد کنید" v-model="form.password">
+                                            <small v-if="errors.password" class="text-danger">{{ errors.password[0] }}</small>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group text-right">
                                             <div class="custom-control custom-checkbox small" style="line-height: 1.5rem;">
+                                                <label class="custom-control-label dir-rtl" for="customCheck">مرا به خاطر بسپار!</label>
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                            <button type="submit" class="btn btn-primary btn-block">ورود</button>
                                         </div>
 <!--                                        <a href="index.html" class="btn btn-google btn-block">-->
 <!--                                            <i class="fab fa-google fa-fw"></i> Login with Google-->
@@ -37,10 +38,10 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <router-link to="/register">Create an Account!</router-link>
+                                        <router-link to="/register">ساخت حساب</router-link>
                                     </div>
                                     <div class="text-center">
-                                        <router-link to="/forget-password">Forget password?</router-link>
+                                        <router-link to="/forget-password">فراموشی رمز عبور</router-link>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +60,8 @@
                 form:{
                     email:null,
                     password:null
-                }
+                },
+                errors:{}
             }
         },
         methods:{
@@ -68,8 +70,18 @@
                 .then(res => {
                     User.responseAfterLogin(res)
                     this.$router.push({name: 'home'})
+                    Toast.fire({
+                        icon: 'success',
+                        title:   '!خوش اومدی' + localStorage.getItem('user')
+                    })
                 })
-                .catch(err => console.log(err.response.data))
+                .catch(err => this.errors = err.response.data.errors)
+                .catch(
+                    Toast.fire({
+                        icon: 'warning',
+                        title:   'ایمیل یا پسورد وارد شده صحیح نیست'
+                    })
+                )
             }
         }
     }

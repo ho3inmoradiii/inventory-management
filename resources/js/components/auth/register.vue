@@ -8,25 +8,27 @@
                             <div class="col-lg-12">
                                 <div class="login-form">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Register</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">ثبت نام</h1>
                                     </div>
-                                    <form>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="exampleInputLastName" placeholder="Enter Full Name">
+                                    <form @submit.prevent="register">
+                                        <div class="form-group text-right">
+                                            <input type="text" class="form-control text-right" placeholder="نام خود را وارد کنید" v-model="form.name">
+                                            <small v-if="errors.name" class="text-danger">{{ errors.name[0] }}</small>
+                                        </div>
+                                        <div class="form-group text-right">
+                                            <input type="email" class="form-control text-right" aria-describedby="emailHelp" placeholder="ایمیل خود را وارد کنید" v-model="form.email">
+                                            <small v-if="errors.email" class="text-danger">{{ errors.email[0] }}</small>
+                                        </div>
+                                        <div class="form-group text-right">
+                                            <input type="password" class="form-control text-right" placeholder="رمز عبور خود را وارد کنید" v-model="form.password">
+                                            <small v-if="errors.password" class="text-danger">{{ errors.password[0] }}</small>
+                                        </div>
+                                        <div class="form-group text-right">
+                                            <input type="password" class="form-control text-right" placeholder="رمز عبور را تکرار کنید" v-model="form.password_confirmation">
+                                            <small v-if="errors.password_confirmation" class="text-danger">{{ errors.password_confirmation[0] }}</small>
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
-                                                   placeholder="Enter Email Address">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" id="exampleInputPasswordRepeat"
-                                                   placeholder="Repeat Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                                            <button type="submit" class="btn btn-primary btn-block">ثبت نام</button>
                                         </div>
 <!--                                        <hr>-->
 <!--                                        <a href="index.html" class="btn btn-google btn-block">-->
@@ -38,7 +40,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <router-link to="/">Already have an account?</router-link>
+                                        <router-link to="/">حساب کاربری دارید؟</router-link>
                                     </div>
                                     <div class="text-center">
                                     </div>
@@ -53,7 +55,39 @@
 </template>
 
 <script>
-
+    export default {
+        data(){
+            return{
+                form:{
+                    name:null,
+                    email:null,
+                    password:null,
+                    password_confirmation:null,
+                },
+                errors:{}
+            }
+        },
+        methods:{
+            register(){
+                axios.post('/api/auth/signup',this.form)
+                    .then(res => {
+                        User.responseAfterLogin(res)
+                        this.$router.push({name: 'home'})
+                        Toast.fire({
+                            icon: 'success',
+                            title:   '!خوش اومدی' + localStorage.getItem('user')
+                        })
+                    })
+                    .catch(err => this.errors = err.response.data.errors)
+                    // .catch(
+                    //     Toast.fire({
+                    //         icon: 'warning',
+                    //         title:   'ایمیل یا پسورد وارد شده صحیح نیست'
+                    //     })
+                    // )
+            }
+        }
+    }
 </script>
 
 <style>
