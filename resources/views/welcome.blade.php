@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="img/logo/logo.png" rel="icon">
     <title>RuangAdmin - Dashboard</title>
     <link href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -30,29 +31,21 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">
+                    <router-link class="nav-link" :to="{name: 'home'}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard</span></a>
+                        <span>داشبورد</span></router-link>
                 </li>
                 <hr class="sidebar-divider">
-                <div class="sidebar-heading">
-                    Features
-                </div>
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
                        aria-expanded="true" aria-controls="collapseBootstrap">
                         <i class="far fa-fw fa-window-maximize"></i>
-                        <span>Bootstrap UI</span>
+                        <span>کارمندان</span>
                     </a>
                     <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Bootstrap UI</h6>
-                            <a class="collapse-item" href="alerts.html">Alerts</a>
-                            <a class="collapse-item" href="buttons.html">Buttons</a>
-                            <a class="collapse-item" href="dropdowns.html">Dropdowns</a>
-                            <a class="collapse-item" href="modals.html">Modals</a>
-                            <a class="collapse-item" href="popovers.html">Popovers</a>
-                            <a class="collapse-item" href="progress-bar.html">Progress Bars</a>
+                            <router-link class="collapse-item" :to="{name: 'IndexEmployee'}">لیست کارمندان</router-link>
+                            <router-link class="collapse-item" :to="{name: 'CreateEmployee'}">اضافه کردن کارمند</router-link>
                         </div>
                     </div>
                 </li>
@@ -308,7 +301,7 @@
 
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
-                    <router-view></router-view>
+                    <router-view :key="$route.fullPath"></router-view>
                 </div>
                 <!---Container Fluid-->
             </div>

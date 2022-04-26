@@ -3,8 +3,9 @@ class Notification {
         new Noty({
             type: 'success',
             layout: 'topRight',
-            text: 'با موفقیت انجام شد.',
-            timeOut: 1000,
+            text: 'با موفقیت انجام شد',
+            progressBar:true,
+            timeout:3000
         }).show();
     }
 
@@ -13,7 +14,8 @@ class Notification {
             type: 'alert',
             layout: 'topRight',
             text: 'مطمئنی؟',
-            timeOut: 1000,
+            progressBar:true,
+            timeout:3000
         }).show();
     }
 
@@ -22,7 +24,8 @@ class Notification {
             type: 'alert',
             layout: 'topRight',
             text: 'مشکلی رخ داده است',
-            timeOut: 1000,
+            progressBar:true,
+            timeout:3000
         }).show();
     }
 
@@ -31,7 +34,20 @@ class Notification {
             type: 'warning',
             layout: 'topRight',
             text: 'ooooops ....',
-            timeOut: 1000,
+            progressBar:true,
+            timeout:3000
+        }).show();
+    }
+
+    image_validation(){
+        new Noty({
+            type: 'error',
+            layout: 'topRight',
+            text: 'حجم فایل بیشتر از 1 مگابایت است',
+            progressBar:true,
+            timeout:3000
         }).show();
     }
 }
+
+export default Notification = new Notification;

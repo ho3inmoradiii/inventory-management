@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidateLoginRequest extends FormRequest
+class StoreEmployeeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,12 @@ class ValidateLoginRequest extends FormRequest
     public function rules()
     {
         return [
+            'fullName' => 'required|max:255',
             'email' => 'required',
-            'password' => 'required',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'email.required' => 'وارد کردن ایمیل الزامی است',
-            'password.required' => 'وارد کردن پسورد الزامی است',
+            'address' => 'nullable',
+            'joiningDate' => 'nullable',
+            'phone' => 'required',
+            'file' => 'nullable',
         ];
     }
 }
