@@ -7,10 +7,11 @@ use App\Http\Requests\StoreEmployeeRequest;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
-//use Image;
+use App\Helper\File;
 
 class EmployeeController extends Controller
 {
+    use File;
     /**
      * Display a listing of the resource.
      *
@@ -43,12 +44,7 @@ class EmployeeController extends Controller
         $validated = $request->validated();
 
         if ($request->hasFile('file')){
-            $fileName = time().'.'.$request->file->getClientOriginalExtension();
-            $upload_path = 'backend/employee/';
-            $image_url = $upload_path.$fileName;
-            $img = Image::make($request->file);
-            $img->resize(240, 200)->save($image_url);
-
+            $image_url = $this->file($request->file,'backend/employee/',240,200);
             $validated['photo'] = $image_url;
             $employee = Employee::create($validated);
         }else{
@@ -64,7 +60,8 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        $employee = Employee::select('fullName','email','address','joiningDate','phone','photo')->where('id',$id)->first();
+        return response()->json($employee);
     }
 
     /**
@@ -85,9 +82,20 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreEmployeeRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+        if ($request->hasFile('file')){
+            $image_url = $this->file($request->file('file'),'backend/employee/',240,200);
+            if ($request->photo != '')
+            {
+                unlink($request->photo);
+            }
+            $validated['photo'] = $image_url;
+            $employee = Employee::where('id',$id)->update($validated);
+        }else{
+            $employee = Employee::where('id',$id)->update($validated);
+        }
     }
 
     /**
@@ -98,6 +106,12 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee = Employee::find($id);
+        $photo = $employee->photo;
+        if ($photo){
+            unlink($photo);
+            $employee->delete();
+        }
+        $employee->delete();
     }
 }

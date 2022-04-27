@@ -10,9 +10,9 @@
                             <div class="col-lg-12">
                                 <div class="login-form">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">اضافه کردن کارمند</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">ویرایش اطلاعات کارمند</h1>
                                     </div>
-                                    <form @submit.prevent="employeeInsert" enctype="multipart/form-data">
+                                    <form @submit.prevent="employeeUpdate" enctype="multipart/form-data">
                                         <div class="form-group text-right dir-rtl">
                                             <div class="form-row">
                                                 <div class="col-md-6">
@@ -49,7 +49,7 @@
                                                     <small v-if="errors.photo" class="text-danger">{{ errors.photo[0] }}</small>
                                                 </div>
                                                 <div class="col-md-1">
-                                                    <img :src="photo" style="width: 40px;height: 40px;" v-if="photo">
+                                                    <img :src="pic" style="width: 40px;height: 40px;" v-if="pic">
                                                 </div>
                                             </div>
                                         </div>
@@ -69,6 +69,9 @@
 
 <script>
     export default {
+        created() {
+            this.getSingleEmployee();
+        },
         data(){
             return{
                 form:{
@@ -77,13 +80,22 @@
                     address:null,
                     joiningDate:null,
                     phone:null,
+                    photo: null,
                 },
-                photo:null,
-                file:null,
-                errors:{}
+                pic:null,
+                file: null,
+                errors: {}
             }
         },
         methods:{
+            getSingleEmployee(){
+                axios.get('/api/employee/' + this.$route.params.id)
+                .then(res => {
+                    this.form = res.data
+                    //console.log(this.form)
+                })
+                .catch(err => console.log(err))
+            },
             onFileSelected(event){
                 let file = event.target.files[0];
                 if (file.size > 1048770) {
@@ -91,30 +103,41 @@
                 }else{
                     let reader = new FileReader();
                     reader.onload = event =>{
-                        this.photo = event.target.result
+                        this.pic = event.target.result
                     };
                     reader.readAsDataURL(file);
                 }
                 this.file = event.target.files[0];
             },
-            employeeInsert: function () {
+            employeeUpdate: function () {
                 if (this.file) {
                     const config = {
                         headers: {'content-type': 'multipart/form-data'}
                     }
                     let formData = new FormData();
                     formData.append('file', this.file);
+                    //console.log(this.file);
                     for (let key in this.form) {
                         formData.append(key, this.form[key] === null ? '' : this.form[key])
                     }
+                    formData.append('_method', 'PUT')
+                    //console.log(this.form);
+                    //formData.append('oldFile', this.photo);
+                    //this.form.file = this.file;
+                    //console.log(this.form);
                     this.postEmployeeData(formData,config);
                 } else {
-                    this.postEmployeeData(this.form);
+                    let formData = new FormData();
+                    for (let key in this.form) {
+                        formData.append(key, this.form[key] === null ? '' : this.form[key])
+                    }
+                    formData.append('_method', 'PUT');
+                    this.postEmployeeData(formData);
                 }
             },
             postEmployeeData(dataVal, ConfigProperty = null)
             {
-                axios.post('/api/employee', dataVal, ConfigProperty)
+                axios.post('/api/employee/' + this.$route.params.id,dataVal,ConfigProperty)
                     .then(res => {
                         this.$router.push({name: 'IndexEmployee'});
                         Notification.success();

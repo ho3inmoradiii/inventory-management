@@ -29,7 +29,6 @@ class StoreEmployeeRequest extends FormRequest
             'address' => 'nullable',
             'joiningDate' => 'nullable',
             'phone' => 'required',
-            'file' => 'nullable',
         ];
     }
 }

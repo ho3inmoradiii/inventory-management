@@ -8,6 +8,7 @@ let Logout = require('./components/auth/TheLogout').default;
 // Employee
 let CreateEmployee = require('./components/employee/CrearteEmployee').default;
 let IndexEmployee = require('./components/employee/IndexEmployee').default;
+let EditEmployee = require('./components/employee/EditEmployee').default;
 
 let Home = require('./components/HomePage').default;
 
@@ -71,6 +72,11 @@ export const routes = [
     {   path: '/index-employee',
         component: IndexEmployee,
         name: 'IndexEmployee',
+        beforeEnter: redirectAfterAuth
+    },
+    {   path: '/edit-employee/:id',
+        component: EditEmployee,
+        name: 'EditEmployee',
         beforeEnter: redirectAfterAuth
     },
     {   path: '/home',
