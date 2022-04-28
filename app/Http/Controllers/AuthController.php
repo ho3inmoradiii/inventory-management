@@ -37,6 +37,8 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
+
+
     public function signup(StoreUserRequest $request){
         $validated = $request->validated();
         $user = User::create($validated);
