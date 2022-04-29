@@ -63,6 +63,19 @@
                     </div>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap3"
+                       aria-expanded="true" aria-controls="collapseBootstrap3">
+                        <i class="far fa-fw fa-window-maximize"></i>
+                        <span>دسته بندی ها</span>
+                    </a>
+                    <div id="collapseBootstrap3" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <router-link class="collapse-item" :to="{name: 'IndexCategory'}">لیست دسته بندی ها</router-link>
+                            <router-link class="collapse-item" :to="{name: 'CreateCategory'}">اضافه کردن دسته بندی</router-link>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="forms.html">
                         <i class="fab fa-fw fa-wpforms"></i>
                         <span>Forms</span>

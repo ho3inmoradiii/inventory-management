@@ -14,6 +14,11 @@ let CreateSupplier = require('./components/supplier/CreateSupplier').default;
 let IndexSupplier = require('./components/supplier/IndexSupplier').default;
 let EditSupplier = require('./components/supplier/EditSupplier').default;
 
+//Category
+let CreateCategory = require('./components/category/CreateCategory').default;
+let IndexCategory = require('./components/category/IndexCategory').default;
+let EditCategory = require('./components/category/EditCategory').default;
+
 let Home = require('./components/HomePage').default;
 
 function redirectIfAuthenticated(to, from, next) {
@@ -96,6 +101,21 @@ export const routes = [
     {   path: '/edit-supplier/:id',
         component: EditSupplier,
         name: 'EditSupplier',
+        beforeEnter: redirectAfterAuth
+    },
+    {   path: '/create-category',
+        component: CreateCategory,
+        name: 'CreateCategory',
+        beforeEnter: redirectAfterAuth
+    },
+    {   path: '/index-category',
+        component: IndexCategory,
+        name: 'IndexCategory',
+        beforeEnter: redirectAfterAuth
+    },
+    {   path: '/edit-category/:id',
+        component: EditCategory,
+        name: 'EditCategory',
         beforeEnter: redirectAfterAuth
     },
     {   path: '/home',
