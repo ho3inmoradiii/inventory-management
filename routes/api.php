@@ -6,6 +6,7 @@ use \App\Http\Controllers\AuthController;
 use \App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ProductController;
 
 Route::group([
 
@@ -25,3 +26,4 @@ Route::group([
 Route::apiResource('/employee',EmployeeController::class);
 Route::apiResource('/supplier',SupplierController::class);
 Route::apiResource('/category',CategoryController::class);
+Route::apiResource('/product',ProductController::class);

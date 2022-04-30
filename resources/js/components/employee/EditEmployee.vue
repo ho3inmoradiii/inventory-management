@@ -40,7 +40,7 @@
                                         <div class="form-group text-right dir-rtl">
                                             <div class="form-row">
                                                 <div class="col-md-6">
-                                                    <input type="number" class="form-control text-right" placeholder="شماره تماس را وارد کنید" v-model="form.phone">
+                                                    <input type="text" class="form-control text-right" placeholder="شماره تماس را وارد کنید" v-model="form.phone">
                                                     <small v-if="errors.phone" class="text-danger">{{ errors.phone[0] }}</small>
                                                 </div>
                                                 <div class="col-md-5">

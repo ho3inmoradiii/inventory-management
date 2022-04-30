@@ -19,6 +19,11 @@ let CreateCategory = require('./components/category/CreateCategory').default;
 let IndexCategory = require('./components/category/IndexCategory').default;
 let EditCategory = require('./components/category/EditCategory').default;
 
+//Category
+let CreateProduct = require('./components/product/CreateProduct').default;
+let IndexProduct = require('./components/product/IndexProduct').default;
+let EditProduct = require('./components/product/EditProduct').default;
+
 let Home = require('./components/HomePage').default;
 
 function redirectIfAuthenticated(to, from, next) {
@@ -116,6 +121,21 @@ export const routes = [
     {   path: '/edit-category/:id',
         component: EditCategory,
         name: 'EditCategory',
+        beforeEnter: redirectAfterAuth
+    },
+    {   path: '/create-product',
+        component: CreateProduct,
+        name: 'CreateProduct',
+        beforeEnter: redirectAfterAuth
+    },
+    {   path: '/index-product',
+        component: IndexProduct,
+        name: 'IndexProduct',
+        beforeEnter: redirectAfterAuth
+    },
+    {   path: '/edit-product/:id',
+        component: EditProduct,
+        name: 'EditProduct',
         beforeEnter: redirectAfterAuth
     },
     {   path: '/home',
