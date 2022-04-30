@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'Nunito';
-  src: url('../font/Nunito-Regular.ttf');
-  src: url('../font/Nunito-Regular.ttf') format('ttf'),
-    url('../font/Nunito-Regular.ttf') format('truetype');
+  src: url('../font/Yekan.ttf');
+  src: url('../font/Yekan.ttf') format('ttf'),
+    url('../font/Yekan.ttf') format('truetype');
 }
 
 html {
@@ -622,6 +622,7 @@ a:focus {
   -webkit-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
   z-index: 0;
+    padding: 0;
 }
 
 .sidebar .nav-item {
@@ -636,9 +637,9 @@ a:focus {
 .sidebar .nav-item .nav-link {
   display: block;
   width: 100%;
-  text-align: left;
   padding: 1rem;
   width: 14rem;
+    text-align: right;
 }
 
 .sidebar .nav-item .nav-link i {
@@ -653,12 +654,13 @@ a:focus {
 
 .sidebar .nav-item.active .nav-link {
   font-weight: 800;
+    text-align: right;
 }
 
 .sidebar .nav-item .nav-link[data-toggle="collapse"]::after {
   width: 1rem;
   text-align: center;
-  float: right;
+  float: left;
   vertical-align: 0;
   border: 0;
   font-weight: 900;
@@ -667,7 +669,7 @@ a:focus {
 }
 
 .sidebar .nav-item .nav-link[data-toggle="collapse"].collapsed::after {
-  content: '\f105';
+  content: '\f104';
 }
 
 .sidebar .nav-item .collapse {
@@ -1116,10 +1118,6 @@ a:focus {
 .sidebar-light .sidebar-brand {
   color: #fafafa;
   background-color: #4C60DA;
-}
-
-.sidebar-light hr.sidebar-divider {
-  border-top: 1px solid #eaecf4;
 }
 
 .sidebar-light .sidebar-heading {

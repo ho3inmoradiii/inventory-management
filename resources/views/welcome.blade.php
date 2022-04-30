@@ -12,14 +12,14 @@
     <title>RuangAdmin - Dashboard</title>
     <link href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('backend/css/ruang-admin.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('backend/css/ruang-admin.css')}}" rel="stylesheet">
     <link href="{{ asset('backend/css/style.css')}}" rel="stylesheet">
     <link href="{{ asset('css/app.css')}}" rel="stylesheet">
 </head>
 
 <body id="page-top">
 <div id="app">
-    <div id="wrapper">{{('')}}
+    <div id="wrapper" class="dir-rtl">{{('')}}
     <!-- Sidebar -->
         <nav id="sidebar" v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/forget-password' ? false : true">
             <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
@@ -29,7 +29,6 @@
                     </div>
                     <div class="sidebar-brand-text mx-3">RuangAdmin</div>
                 </a>
-                <hr class="sidebar-divider my-0">
                 <li class="nav-item active">
                     <router-link class="nav-link" :to="{name: 'home'}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -143,7 +142,7 @@
                     <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
