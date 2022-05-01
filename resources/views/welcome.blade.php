@@ -34,6 +34,12 @@
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>داشبورد</span></router-link>
                 </li>
+                <li class="nav-item active">
+                    <router-link class="nav-link" :to="{name: 'POS'}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>POS</span>
+                    </router-link>
+                </li>
                 <hr class="sidebar-divider">
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
@@ -84,6 +90,19 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <router-link class="collapse-item" :to="{name: 'IndexProduct'}">لیست محصولات</router-link>
                             <router-link class="collapse-item" :to="{name: 'CreateProduct'}">اضافه کردن محصول</router-link>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap5"
+                       aria-expanded="true" aria-controls="collapseBootstrap5">
+                        <i class="far fa-fw fa-window-maximize"></i>
+                        <span>سفارش دهندگان</span>
+                    </a>
+                    <div id="collapseBootstrap5" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <router-link class="collapse-item" :to="{name: 'IndexCustomer'}">لیست سفارش دهندگان</router-link>
+                            <router-link class="collapse-item" :to="{name: 'CreateCustomer'}">اضافه کردن سفارش دهنده</router-link>
                         </div>
                     </div>
                 </li>

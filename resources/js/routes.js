@@ -19,12 +19,19 @@ let CreateCategory = require('./components/category/CreateCategory').default;
 let IndexCategory = require('./components/category/IndexCategory').default;
 let EditCategory = require('./components/category/EditCategory').default;
 
-//Category
+//Product
 let CreateProduct = require('./components/product/CreateProduct').default;
 let IndexProduct = require('./components/product/IndexProduct').default;
 let EditProduct = require('./components/product/EditProduct').default;
 
+//Product
+let CreateCustomer = require('./components/customer/CreateCustomer').default;
+let IndexCustomer = require('./components/customer/IndexCustomer').default;
+let EditCustomer = require('./components/customer/EditCustomer').default;
+
 let Home = require('./components/HomePage').default;
+
+let POS = require('./components/pos/POS').default;
 
 function redirectIfAuthenticated(to, from, next) {
     let isAuthenticated= false;
@@ -138,9 +145,29 @@ export const routes = [
         name: 'EditProduct',
         beforeEnter: redirectAfterAuth
     },
+    {   path: '/create-customer',
+        component: CreateCustomer,
+        name: 'CreateCustomer',
+        beforeEnter: redirectAfterAuth
+    },
+    {   path: '/index-customer',
+        component: IndexCustomer,
+        name: 'IndexCustomer',
+        beforeEnter: redirectAfterAuth
+    },
+    {   path: '/edit-customer/:id',
+        component: EditCustomer,
+        name: 'EditCustomer',
+        beforeEnter: redirectAfterAuth
+    },
     {   path: '/home',
         component: Home,
         name: 'home',
+        beforeEnter: redirectAfterAuth
+    },
+    {   path: '/pos',
+        component: POS,
+        name: 'POS',
         beforeEnter: redirectAfterAuth
     },
 ]
