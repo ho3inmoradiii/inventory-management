@@ -48,6 +48,26 @@ class Notification {
             timeout:3000
         }).show();
     }
+
+    cart_success(){
+        new Noty({
+            type: 'success',
+            layout: 'topRight',
+            text: 'محصول با موفقیت به سبد اضافه شد',
+            progressBar:true,
+            timeout:3000
+        }).show();
+    }
+
+    cart_delete(){
+        new Noty({
+            type: 'success',
+            layout: 'topRight',
+            text: 'محصول با موفقیت از سبد حذف شد',
+            progressBar:true,
+            timeout:3000
+        }).show();
+    }
 }
 
 export default Notification = new Notification;

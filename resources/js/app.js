@@ -34,6 +34,11 @@ const router = new VueRouter({
 import User from "./Helpers/User";
 window.User = User;
 
+window.Reload = new Vue();
+// window.location.reload = new Vue();
+//location.reload = new Vue();
+//loca.reload = new Vue();
+
 const app = new Vue({
     el: '#app',
     router

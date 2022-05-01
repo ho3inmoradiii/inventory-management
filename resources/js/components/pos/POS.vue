@@ -12,7 +12,7 @@
                     <div class="card mb-4">
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <h6 class="m-0 font-weight-bold text-primary">Expense Insert</h6>
-                            <a class="btn btn-sm btn-info"><font color="#ffffff">Add Customer</font></a>
+                            <router-link :to="{name: 'CreateCustomer'}" class="btn btn-sm btn-info"><font color="#ffffff">اضافه کردن مشتری</font></router-link>
 
                         </div>
                         <div class="table-responsive">
@@ -26,13 +26,17 @@
                                     <th>عملیات</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <th>نام</th>
-                                    <th>تعداد</th>
-                                    <th>واحد</th>
-                                    <th>مجموع</th>
-                                    <td><a href="#" class="btn btn-sm btn-primary">X</a></td>
+                                <tbody style="font-size: 13px;">
+                                <tr v-for="cart in carts" :key="cart.id">
+                                    <th>{{ cart.pro_name }}</th>
+                                    <th>
+                                        <button @click="increment(cart.id)" class="btn btn-success btn-sm">+</button>
+                                        <input style="width: 25px;text-align: center" type="text" readonly :value="cart.pro_quantity">
+                                        <button @click="decrement(cart.id)" class="btn btn-danger btn-sm" :disabled="cart.pro_quantity == 1 ? true : false">-</button>
+                                    </th>
+                                    <th>{{ cart.product_price }}</th>
+                                    <th>{{ cart.sub_total }}</th>
+                                    <td><a @click.prevent="removeItem(cart.id)" class="btn btn-sm btn-primary">x</a></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -40,25 +44,24 @@
                         <div class="card-footer">
                             <ul class="list-group p-0">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">مجموع تعداد:
-                                    <strong>56</strong>
+                                    <strong>{{ qty }}</strong>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">مجموع هزینه:
-                                    <strong>623$</strong>
+                                    <strong>{{ subtotal }} $</strong>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">مالیات:
-                                    <strong>10%</strong>
+                                    <strong>{{ vats.vat }} % </strong>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">مجموع:
-                                    <strong>6205$</strong>
+                                    <strong>{{ (subtotal * vats.vat)/100 + subtotal }} $</strong>
                                 </li>
                             </ul>
                             <br>
 
                             <form>
-                                <label>سفارش دهنده</label>
+                                <label>مشتری</label>
                                 <select class="form-control" v-model="customer_id">
-                                    <option>حسین مرادی</option>
-                                    <option>جعفر مرادی</option>
+                                    <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{ customer.name }}</option>
                                 </select>
                                 <label>پرداخت</label>
                                 <input type="text" class="form-control" required v-model="pay">
@@ -102,8 +105,8 @@
                                                     <img :src="product.image" class="card-img-top em_photo">
                                                     <div class="card-body">
                                                         <h6 class="card-title">{{ product.product_name }}</h6>
-                                                        <span class="badge badge-success" v-if="product.product_quantity  >= 1 ">Available {{ product.product_quantity }}  </span>
-                                                        <span class="badge badge-danger" v-else=" ">Stock Out </span>
+                                                        <span class="badge badge-success" v-if="product.product_quantity  >= 1 ">موجود ({{ product.product_quantity }})  </span>
+                                                        <span class="badge badge-danger" v-else=" ">ناموجود</span>
 
                                                     </div>
                                                 </div>
@@ -124,8 +127,8 @@
                                                     <img :src="getproduct.image" class="card-img-top em_photo">
                                                     <div class="card-body">
                                                         <h6 class="card-title">{{ getproduct.product_name }}</h6>
-                                                        <span class="badge badge-success" v-if="getproduct.product_quantity  >= 1 ">Available {{ getproduct.product_quantity }}  </span>
-                                                        <span class="badge badge-danger" v-else=" ">Stock Out </span>
+                                                        <span class="badge badge-success" v-if="getproduct.product_quantity  >= 1 ">موجود ({{ getproduct.product_quantity }})  </span>
+                                                        <span class="badge badge-danger" v-else=" ">ناموجود</span>
 
                                                     </div>
                                                 </div>
@@ -161,10 +164,12 @@
         created(){
             this.allProduct();
             this.allCategory();
+            this.allCustomer();
             this.vat();
-            // Reload.$on('AfterAdd',() =>{
-            //     this.cartProduct();
-            // })
+            this.cartProduct();
+            Reload.$on('AfterAdd',() =>{
+                this.cartProduct();
+            })
 
         },
         data(){
@@ -175,7 +180,8 @@
                 payby:'',
 
                 products:[],
-                categories:'',
+                categories:[],
+                customers:[],
                 getproducts:[],
                 searchTerm:'',
                 getsearchTerm:'',
@@ -219,9 +225,15 @@
             AddToCart(id){
                 axios.get('/api/addToCart/'+id)
                     .then(() => {
+                        // this.$router.go({name: 'POS'})
                         Reload.$emit('AfterAdd');
                         Notification.cart_success()
                     })
+                    .catch()
+            },
+            cartProduct(){
+                axios.get('/api/cart/product')
+                    .then(({data}) => (this.carts = data))
                     .catch()
             },
             removeItem(id){
@@ -280,9 +292,12 @@
                 axios.get('/api/getting/product/'+id)
                     .then(({data}) => (this.getproducts = data))
                     .catch()
+            },
+            allCustomer(){
+                axios.get('/api/customer')
+                    .then(({data}) => (this.customers = data))
+                    .catch()
             }
-
-
         }
 
     }

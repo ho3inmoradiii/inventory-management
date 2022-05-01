@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\POSController;
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\CartController;
 
 
 Route::group([
@@ -33,3 +34,9 @@ Route::apiResource('/product',ProductController::class);
 Route::apiResource('/customer',CustomerController::class);
 
 Route::get('/getting/product/{id}',[POSController::class,'subProduct']);
+Route::get('/addToCart/{id}',[CartController::class,'addToCart']);
+Route::get('/remove/cart/{id}',[CartController::class,'removeFromCart']);
+Route::get('/cart/product',[CartController::class,'cartProduct']);
+Route::get('/increment/{id}',[CartController::class,'increment']);
+Route::get('/decrement/{id}',[CartController::class,'decrement']);
+Route::get('/vats',[CartController::class,'vats']);
