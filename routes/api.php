@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\POSController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\OrderController;
 
 
 Route::group([
@@ -41,3 +42,6 @@ Route::get('/increment/{id}',[CartController::class,'increment']);
 Route::get('/decrement/{id}',[CartController::class,'decrement']);
 Route::get('/vats',[CartController::class,'vats']);
 Route::post('/orderdone',[POSController::class,'OrderDone']);
+Route::get('/orders',[OrderController::class,'orders']);
+Route::get('/order/customer/{id}',[OrderController::class,'OrderCustomer']);
+Route::get('/order/details/{id}',[OrderController::class,'OrderDetails']);

@@ -33,6 +33,10 @@ let Home = require('./components/HomePage').default;
 
 let POS = require('./components/pos/POS').default;
 
+//orders
+let Orders = require('./components/order/Orders').default;
+let ViewOrder = require('./components/order/ViewOrder').default;
+
 function redirectIfAuthenticated(to, from, next) {
     let isAuthenticated= false;
     if(User.loggedIn())
@@ -168,6 +172,16 @@ export const routes = [
     {   path: '/pos',
         component: POS,
         name: 'POS',
+        beforeEnter: redirectAfterAuth
+    },
+    {   path: '/orders',
+        component: Orders,
+        name: 'Orders',
+        beforeEnter: redirectAfterAuth
+    },
+    {   path: '/view-order/:id',
+        component: ViewOrder,
+        name: 'ViewOrder',
         beforeEnter: redirectAfterAuth
     },
 ]

@@ -69,9 +69,9 @@
 <!--                                <input type="text" class="form-control" required v-model="pay">-->
                                 <label>نحوه پرداخت</label>
                                 <select class="form-control" v-model="payby">
-                                    <option value="HandCash">نقدی</option>
-                                    <option value="Cheaque">چک</option>
-                                    <option value="GiftCard">کارت هدیه</option>
+                                    <option value="نقدی">نقدی</option>
+                                    <option value="چک">چک</option>
+                                    <option value="کارت هدیه">کارت هدیه</option>
                                 </select>
                                 <button type="submit" class="btn btn-success mt-3">تایید</button>
                             </form>
