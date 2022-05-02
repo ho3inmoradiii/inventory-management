@@ -58,7 +58,7 @@
                             </ul>
                             <br>
 
-                            <form>
+                            <form @submit.prevent="orderdone">
                                 <label>مشتری</label>
                                 <select class="form-control" v-model="customer_id">
                                     <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{ customer.name }}</option>
@@ -143,17 +143,9 @@
 
                 </div>
             </div>
-
-
-
         </div>
         <!--Row-->
-
-
-
     </div>
-
-
 </template>
 
 
@@ -267,7 +259,7 @@
             },
             orderdone(){
                 let total = this.subtotal*this.vats.vat /100 + this.subtotal;
-                var data = {qty:this.qty, subtotal:this.subtotal, customer_id:this.customer_id, payby:this.payby, pay:this.pay, due:this.due, vat:this.vats.vat, total:total }
+                var data = {qty:this.qty, subtotal:this.subtotal, customer_id:this.customer_id, payby:this.payby, pay:this.pay, vat:this.vats.vat, total:total }
 
                 axios.post('/api/orderdone',data)
                     .then(() => {

@@ -40,3 +40,4 @@ Route::get('/cart/product',[CartController::class,'cartProduct']);
 Route::get('/increment/{id}',[CartController::class,'increment']);
 Route::get('/decrement/{id}',[CartController::class,'decrement']);
 Route::get('/vats',[CartController::class,'vats']);
+Route::post('/orderdone',[POSController::class,'OrderDone']);
