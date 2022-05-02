@@ -52,51 +52,6 @@
                 </div>
             </div>
         </div>
-<!--        <div class="row justify-content-center">-->
-
-<!--            <div class="col-xl-12 col-lg-12 col-md-9">-->
-<!--                <div class="card shadow-sm my-5">-->
-<!--                    <div class="card-body p-0">-->
-<!--                        <div class="row">-->
-<!--                            <div class="col-lg-12">-->
-<!--                                &lt;!&ndash; Simple Tables &ndash;&gt;-->
-<!--                                <div class="card">-->
-<!--                                    <div class="card-header py-3 d-flex justify-content-between dir-rtl">-->
-<!--                                        <h6 class="m-0 font-weight-bold text-primary">جزئیات سفارش</h6>-->
-<!--                                    </div>-->
-<!--                                    <div class="table-responsive">-->
-<!--                                        <table class="table align-items-center table-flush">-->
-<!--                                            <thead class="thead-light">-->
-<!--                                            <tr>-->
-<!--                                                <th>نام محصول</th>-->
-<!--                                                <th>کد محصول</th>-->
-<!--                                                <th>عکس محصول</th>-->
-<!--                                                <th>تعداد سفارش</th>-->
-<!--                                                <th>قیمت واحد</th>-->
-<!--                                                <th>قیمت مجموع</th>-->
-<!--                                            </tr>-->
-<!--                                            </thead>-->
-<!--                                            <tbody>-->
-<!--                                            <tr v-for="detail in details" :key="detail.product_name">-->
-<!--                                                <td>{{ detail.product_name }}</td>-->
-<!--                                                <td>{{ detail.product_code }}</td>-->
-<!--                                                <td><img :src="detail.image" id="em_photo"></td>-->
-<!--                                                <td>{{ detail.pro_quantity }}</td>-->
-<!--                                                <td>{{ detail.product_price }} $</td>-->
-<!--                                                <td>{{ detail.sub_total }} $</td>-->
-<!--                                            </tr>-->
-
-<!--                                            </tbody>-->
-<!--                                        </table>-->
-<!--                                    </div>-->
-<!--                                    <div class="card-footer"></div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
         <div class="row">
             <div class="col-lg-12 mb-4">
                 <!-- Simple Tables -->

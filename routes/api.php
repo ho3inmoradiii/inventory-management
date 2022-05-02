@@ -45,3 +45,4 @@ Route::post('/orderdone',[POSController::class,'OrderDone']);
 Route::get('/orders',[OrderController::class,'orders']);
 Route::get('/order/customer/{id}',[OrderController::class,'OrderCustomer']);
 Route::get('/order/details/{id}',[OrderController::class,'OrderDetails']);
+Route::post('/order/search',[OrderController::class,'OrderSearch']);

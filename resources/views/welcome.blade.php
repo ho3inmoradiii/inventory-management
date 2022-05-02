@@ -115,7 +115,7 @@
                     <div id="collapseBootstrap6" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <router-link class="collapse-item" :to="{name: 'Orders'}">سفارشات امروز</router-link>
-                            <router-link class="collapse-item" :to="{name: 'CreateCustomer'}">جستجوی سفارش</router-link>
+                            <router-link class="collapse-item" :to="{name: 'SearchOrder'}">جستجوی سفارش</router-link>
                         </div>
                     </div>
                 </li>
