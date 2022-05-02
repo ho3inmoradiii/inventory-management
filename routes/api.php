@@ -46,3 +46,6 @@ Route::get('/orders',[OrderController::class,'orders']);
 Route::get('/order/customer/{id}',[OrderController::class,'OrderCustomer']);
 Route::get('/order/details/{id}',[OrderController::class,'OrderDetails']);
 Route::post('/order/search',[OrderController::class,'OrderSearch']);
+Route::get('/today/sell',[POSController::class,'TodaySell']);
+Route::get('/today/earning',[POSController::class,'TodayEarning']);
+Route::get('/pro/StockOut',[POSController::class,'StockOut']);

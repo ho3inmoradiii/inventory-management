@@ -48,4 +48,21 @@ class POSController extends Controller
         DB::table('pos')->delete();
         return response('Done');
     }
+
+    public function TodaySell(){
+        $date = date('d/m/Y');
+        $sell = DB::table('orders')->where('order_date',$date)->count();
+        return response()->json($sell);
+    }
+
+    public function TodayEarning(){
+        $date = date('d/m/Y');
+        $sell = DB::table('orders')->where('order_date',$date)->sum('pay');
+        return response()->json($sell);
+    }
+
+    public function StockOut(){
+        $product = Product::with('supplier','category')->where('product_quantity','<','1')->get();
+        return response()->json($product);
+    }
 }
