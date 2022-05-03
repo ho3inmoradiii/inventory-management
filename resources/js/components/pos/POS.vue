@@ -11,7 +11,7 @@
                 <div class="col-xl-5 col-lg-5">
                     <div class="card mb-4">
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Expense Insert</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">صورت حساب</h6>
                             <router-link :to="{name: 'CreateCustomer'}" class="btn btn-sm btn-info"><font color="#ffffff">اضافه کردن مشتری</font></router-link>
 
                         </div>
@@ -271,7 +271,7 @@
 
             // End Cart Methods
             allProduct(){
-                axios.get('/api/product/')
+                axios.get('/api/pro/StockIn')
                     .then(({data}) => (this.products = data))
                     .catch()
             },

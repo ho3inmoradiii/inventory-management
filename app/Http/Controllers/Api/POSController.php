@@ -65,4 +65,9 @@ class POSController extends Controller
         $product = Product::with('supplier','category')->where('product_quantity','<','1')->get();
         return response()->json($product);
     }
+
+    public function StockIn(){
+        $product = Product::where('product_quantity','>','1')->get();
+        return response()->json($product);
+    }
 }

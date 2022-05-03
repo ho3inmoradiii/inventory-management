@@ -7684,7 +7684,7 @@ __webpack_require__.r(__webpack_exports__);
     allProduct: function allProduct() {
       var _this7 = this;
 
-      axios.get('/api/product/').then(function (_ref3) {
+      axios.get('/api/pro/StockIn').then(function (_ref3) {
         var data = _ref3.data;
         return _this7.products = data;
       })["catch"]();
@@ -44638,7 +44638,7 @@ var render = function () {
                   _c(
                     "h6",
                     { staticClass: "m-0 font-weight-bold text-primary" },
-                    [_vm._v("Expense Insert")]
+                    [_vm._v("صورت حساب")]
                   ),
                   _vm._v(" "),
                   _c(

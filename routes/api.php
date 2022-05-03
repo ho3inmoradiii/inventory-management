@@ -49,3 +49,4 @@ Route::post('/order/search',[OrderController::class,'OrderSearch']);
 Route::get('/today/sell',[POSController::class,'TodaySell']);
 Route::get('/today/earning',[POSController::class,'TodayEarning']);
 Route::get('/pro/StockOut',[POSController::class,'StockOut']);
+Route::get('/pro/StockIn',[POSController::class,'StockIn']);
